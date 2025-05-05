@@ -61,32 +61,31 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             (POST_TWO_COLS ? '2xl:p-4 2xl:h-48 2xl:w-full' : '') +
             ' flex p-6  flex-col justify-between h-48 md:h-full w-full md:w-7/12'
           }>
-          <header>
-            {/* 标题和图标 */}
-            <Link
-              href={post?.href}
-              passHref
-              className={
-                ' group-hover:text-indigo-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100  line-clamp-2 replace cursor-pointer text-xl font-extrabold leading-tight'
-              }>
-              {siteConfig('POST_TITLE_ICON') && (
-                <NotionIcon
-                icon={post.pageIcon}
-                className="heo-icon w-6 h-6 mr-1 align-middle transform translate-y-[-8%]" // 专门为 Heo 主题的图标设置样式
-              />
-              )}
-              <span className='menu-link '>{post.title}</span>
-            </Link>
-            <h2>
-                <Link
-                  href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
-                  passHref
-                  className='font-light hover:underline cursor-pointer text-sm leading-4 mr-3'>
-                  <i className='far fa-clock mr-1' />
-                  {post.date?.start_date || post.lastEditedDay}
-                </Link>
-              </h2>
-          </header>
+          
+          {/* 标题和图标 */}
+          <Link
+            href={post?.href}
+            passHref
+            className={
+              ' group-hover:text-indigo-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100  line-clamp-2 replace cursor-pointer text-xl font-extrabold leading-tight'
+            }>
+            {siteConfig('POST_TITLE_ICON') && (
+              <NotionIcon
+              icon={post.pageIcon}
+              className="heo-icon w-6 h-6 mr-1 align-middle transform translate-y-[-8%]" // 专门为 Heo 主题的图标设置样式
+            />
+            )}
+            <span className='menu-link '>{post.title}</span>
+          </Link>
+          <h2>
+              <Link
+                href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
+                passHref
+                className='font-light hover:underline cursor-pointer text-sm leading-4 mr-3'>
+                <i className='far fa-clock mr-1' />
+                {post.date?.start_date || post.lastEditedDay}
+              </Link>
+            </h2>
           {/* 分类标签 */}
           <div className='mt-auto justify-between flex'>
             {post.category && (
