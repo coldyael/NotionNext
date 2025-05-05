@@ -1,6 +1,7 @@
 import LazyImage from '@/components/LazyImage'
 import NotionIcon from './NotionIcon'
 import { siteConfig } from '@/lib/config'
+import { formatDateFmt } from '@/lib/utils/formatDate'
 import Link from 'next/link'
 import CONFIG from '../config'
 import TagItemMini from './TagItemMini'
@@ -90,7 +91,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                 />
               </div>
           </header>
-          
+
           <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
             <div>
               {' '}
