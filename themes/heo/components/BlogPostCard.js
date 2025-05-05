@@ -61,18 +61,6 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             ' flex p-6  flex-col justify-between h-48 md:h-full w-full md:w-7/12'
           }>
           <header>
-            {/* 分类 */}
-            {post?.category && (
-              <div
-                className={`flex mb-1 items-center ${showPreview ? 'justify-center' : 'justify-start'} hidden md:block flex-wrap dark:text-gray-300 text-gray-600 hover:text-indigo-700 dark:hover:text-yellow-500`}>
-                <Link
-                  passHref
-                  href={`/category/${post.category}`}
-                  className='cursor-pointer text-xs font-normal menu-link '>
-                  {post.category}
-                </Link>
-              </div>
-            )}
 
             {/* 标题和图标 */}
             <Link
@@ -91,12 +79,28 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             </Link>
           </header>
 
-          {/* 摘要 */}
-          {(!showPreview || showSummary) && (
-            <main className='line-clamp-2 replace text-gray-700  dark:text-gray-300 text-sm font-light leading-tight'>
-              {post.summary}
-            </main>
-          )}
+          <div className='text-gray-800 justify-between flex my-2  dark:text-gray-300'>
+              <div>
+                <Link
+                  href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
+                  passHref
+                  className='font-light hover:underline cursor-pointer text-sm leading-4 mr-3'>
+                  <i className='far fa-clock mr-1' />
+                  {post.date?.start_date || post.lastEditedDay}
+                </Link>
+                <TwikooCommentCount
+                  post={post}
+                  className='hover:underline cursor-pointer text-sm'
+                />
+              </div>
+              <Link
+                href={`/category/${post.category}`}
+                passHref
+                className='cursor-pointer font-light text-sm hover:underline hover:text-indigo-700 dark:hover:text-indigo-400 transform'>
+                <i className='mr-1 far fa-folder' />
+                {post.category}
+              </Link>
+            </div>
 
           <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
             <div>
