@@ -77,7 +77,8 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
               )}
               <span className='menu-link '>{post.title}</span>
             </Link>
-            <div>
+          </header>
+          <div>
                 <Link
                   href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
                   passHref
@@ -85,13 +86,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                   <i className='far fa-clock mr-1' />
                   {post.date?.start_date || post.lastEditedDay}
                 </Link>
-                <TwikooCommentCount
-                  post={post}
-                  className='hover:underline cursor-pointer text-sm'
-                />
-              </div>
-          </header>
-
+          </div>
           <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
             <div>
               {' '}
