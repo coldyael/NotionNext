@@ -61,7 +61,6 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             ' flex p-6  flex-col justify-between h-48 md:h-full w-full md:w-7/12'
           }>
           <header>
-
             {/* 标题和图标 */}
             <Link
               href={post?.href}
@@ -77,10 +76,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
               )}
               <span className='menu-link '>{post.title}</span>
             </Link>
-          </header>
-
-          <div className='text-gray-800 justify-between flex my-2  dark:text-gray-300'>
-              <div>
+            <div>
                 <Link
                   href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
                   passHref
@@ -93,15 +89,8 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                   className='hover:underline cursor-pointer text-sm'
                 />
               </div>
-              <Link
-                href={`/category/${post.category}`}
-                passHref
-                className='cursor-pointer font-light text-sm hover:underline hover:text-indigo-700 dark:hover:text-indigo-400 transform'>
-                <i className='mr-1 far fa-folder' />
-                {post.category}
-              </Link>
-            </div>
-
+          </header>
+          
           <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
             <div>
               {' '}
