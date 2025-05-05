@@ -1,7 +1,6 @@
 import LazyImage from '@/components/LazyImage'
 import NotionIcon from './NotionIcon'
 import { siteConfig } from '@/lib/config'
-import { formatDateFmt } from '@/lib/utils/formatDate'
 import Link from 'next/link'
 import CONFIG from '../config'
 import TagItemMini from './TagItemMini'
@@ -61,48 +60,42 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             (POST_TWO_COLS ? '2xl:p-4 2xl:h-48 2xl:w-full' : '') +
             ' flex p-6  flex-col justify-between h-48 md:h-full w-full md:w-7/12'
           }>
-          
-          {/* 标题和图标 */}
-          <Link
-            href={post?.href}
-            passHref
-            className={
-              ' group-hover:text-indigo-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100  line-clamp-2 replace cursor-pointer text-xl font-extrabold leading-tight'
-            }>
-            {siteConfig('POST_TITLE_ICON') && (
-              <NotionIcon
-              icon={post.pageIcon}
-              className="heo-icon w-6 h-6 mr-1 align-middle transform translate-y-[-8%]" // 专门为 Heo 主题的图标设置样式
-            />
-            )}
-            <span className='menu-link '>{post.title}</span>
-          </Link>
-          <h2>
-              <Link
-                href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
-                passHref
-                className='font-light hover:underline cursor-pointer text-sm leading-4 mr-3'>
-                <i className='far fa-clock mr-1' />
-                {post.date?.start_date || post.lastEditedDay}
-              </Link>
-            </h2>
-          {/* 分类标签 */}
-          <div className='mt-auto justify-between flex'>
-            {post.category && (
-              <Link
-                href={`/category/${post.category}`}
-                passHref
-                className='cursor-pointer dark:text-gray-300 font-light text-sm hover:underline hover:text-indigo-700 dark:hover:text-indigo-400 transform'>
-                <i className='mr-1 far fa-folder' />
-                {post.category}
-              </Link>
-            )}
-            <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
-              <div>
-                {post.tagItems?.map(tag => (
-                  <TagItemMini key={tag.name} tag={tag} />
-                ))}
+          <header>
+            {/* 分类 */}
+            {post?.category && (
+              <div
+                className={`flex mb-1 items-center ${showPreview ? 'justify-center' : 'justify-start'} hidden md:block flex-wrap dark:text-gray-300 text-gray-600 hover:text-indigo-700 dark:hover:text-yellow-500`}>
+                <Link
+                  passHref
+                  href={`/category/${post.category}`}
+                  className='cursor-pointer text-xs font-normal menu-link '>
+                  {post.category}
+                </Link>
               </div>
+            )}
+
+            {/* 标题和图标 */}
+            <Link
+              href={post?.href}
+              passHref
+              className={
+                ' group-hover:text-indigo-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100  line-clamp-2 replace cursor-pointer text-xl font-extrabold leading-tight'
+              }>
+              {siteConfig('POST_TITLE_ICON') && (
+                <NotionIcon
+                icon={post.pageIcon}
+                className="heo-icon w-6 h-6 mr-1 align-middle transform translate-y-[-8%]" // 专门为 Heo 主题的图标设置样式
+              />
+              )}
+              <span className='menu-link '>{post.title}</span>
+            </Link>
+          </header>
+          <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
+            <div>
+              {' '}
+              {post.tagItems?.map(tag => (
+                <TagItemMini key={tag.name} tag={tag} />
+              ))}
             </div>
           </div>
         </div>
