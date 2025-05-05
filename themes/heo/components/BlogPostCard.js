@@ -77,8 +77,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
               )}
               <span className='menu-link '>{post.title}</span>
             </Link>
-          </header>
-          <div>
+            <h2>
                 <Link
                   href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
                   passHref
@@ -86,13 +85,25 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                   <i className='far fa-clock mr-1' />
                   {post.date?.start_date || post.lastEditedDay}
                 </Link>
-          </div>
-          <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
-            <div>
-              {' '}
-              {post.tagItems?.map(tag => (
-                <TagItemMini key={tag.name} tag={tag} />
-              ))}
+              </h2>
+          </header>
+          {/* 分类标签 */}
+          <div className='mt-auto justify-between flex'>
+            {post.category && (
+              <Link
+                href={`/category/${post.category}`}
+                passHref
+                className='cursor-pointer dark:text-gray-300 font-light text-sm hover:underline hover:text-indigo-700 dark:hover:text-indigo-400 transform'>
+                <i className='mr-1 far fa-folder' />
+                {post.category}
+              </Link>
+            )}
+            <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
+              <div>
+                {post.tagItems?.map(tag => (
+                  <TagItemMini key={tag.name} tag={tag} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
