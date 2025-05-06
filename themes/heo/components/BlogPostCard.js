@@ -43,7 +43,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             <a
               className={
                 (POST_TWO_COLS ? ' 2xl:w-full' : '') +
-                ' w-full md:w-5/12 overflow-hidden cursor-pointer select-none'
+                ' w-full md:w-6/12 overflow-hidden cursor-pointer select-none'
               }>
               <LazyImage
                 priority={index === 0}
@@ -59,9 +59,9 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
         <div
           className={
             (POST_TWO_COLS ? '2xl:p-4 2xl:h-48 2xl:w-full' : '') +
-            ' flex p-6  flex-col justify-between h-48 md:h-full w-full md:w-7/12'
+            ' flex p-4  flex-col justify-between h-48 md:h-full w-full md:w-6/12'
           }>
-
+          <header className="space-y-1"> {/* 添加紧凑间距 */}
           {/* 标题和图标 */}
           <Link
             href={post?.href}
@@ -106,6 +106,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             </div>
           </div>
         </div>
+        </header>
       </div>
     </article>
   )
