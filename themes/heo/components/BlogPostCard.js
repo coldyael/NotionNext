@@ -81,8 +81,13 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             
             {/* 日期 */}
             <h2 className='text-sm text-gray-500'>
-              <i className='far fa-clock mr-1' />
-              {post.date?.start_date || post.lastEditedDay}
+              <Link
+                href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
+                passHref
+                className='font-light hover:underline cursor-pointer text-sm leading-4 mr-3'>
+                <i className='far fa-clock mr-1' />
+                {post.date?.start_date || post.lastEditedDay}
+              </Link>
             </h2>
           </div>
       
