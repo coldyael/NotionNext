@@ -81,14 +81,6 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
 
             {/* 新增的日期和分类区块 */}
             <div className='flex items-center justify-between gap-4 mt-2'>
-              {/* 日期 */}
-              {post.date?.start_date && (
-                <div className='flex items-center text-sm text-gray-500 dark:text-gray-400'>
-                  <i className='far fa-clock mr-1' />
-                  <span>{post.date?.start_date || post.lastEditedDay}</span>
-                </div>
-              )}
-
               {/* 分类 */}
               {post.category && (
                 <Link
@@ -97,6 +89,16 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                 >
                   <i className='far fa-folder mr-1' />
                   {post.category}
+                </Link>
+              )}
+              
+              {/* 日期 */}
+              {post.date?.start_date && (
+                 <Link
+                  href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
+                  className='flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors'>
+                <i className='far fa-clock mr-1' />
+                {post.date?.start_date || post.lastEditedDay}
                 </Link>
               )}
             </div>
