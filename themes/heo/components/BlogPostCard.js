@@ -47,6 +47,9 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                 ' w-full md:w-5/12 overflow-hidden cursor-pointer select-none'
               }>
               <LazyImage
+                priority={index === 0}
+                src={post?.pageCoverThumbnail}
+                alt={post?.title}
                 className='h-full w-full object-cover group-hover:scale-105 group-hover:brightness-75 transition-all duration-300 ease-in-out' // 缩短动画时间
               />
             </a>
@@ -61,8 +64,18 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
           
           {/* 标题区块 */}
           <div className="space-y-1"> {/* 减少垂直间距 */}
-            <Link href={post?.href} passHref className='line-clamp-2 text-xl font-bold leading-snug'> {/* 简化类名 */}
-              {siteConfig('POST_TITLE_ICON') && <NotionIcon ... />}
+            <Link 
+              href={post?.href} 
+              passHref 
+              className={
+                ' group-hover:text-indigo-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100  line-clamp-2 replace cursor-pointer text-xl font-extrabold leading-tight'
+              }>
+              {siteConfig('POST_TITLE_ICON') && (
+                <NotionIcon
+                icon={post.pageIcon}
+                className="heo-icon w-6 h-6 mr-1 align-middle transform translate-y-[-8%]" // 专门为 Heo 主题的图标设置样式
+              />
+              )}
               <span className='menu-link'>{post.title}</span>
             </Link>
             
