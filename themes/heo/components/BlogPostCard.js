@@ -63,12 +63,12 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
           }>
 
           {/* 标题区块 */}
-          <div className="space-y-1"> {/* 减少垂直间距 */}
+          <div className="min-h-[4.5rem] mb-2"> {/* 减少垂直间距 */}
             <Link
               href={post?.href}
               passHref
               className={
-                ' group-hover:text-indigo-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100  line-clamp-2 replace cursor-pointer text-xl font-extrabold leading-tight'
+                'line-clamp-2 text-xl font-bold leading-snug hover:text-indigo-700 dark:hover:text-yellow-600 dark:text-gray-100'
               }>
               {siteConfig('POST_TITLE_ICON') && (
                 <NotionIcon
@@ -78,9 +78,10 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
               )}
               <span className='menu-link'>{post.title}</span>
             </Link>
+          </div>
 
             {/* 新增的日期和分类区块 */}
-            <div className='flex items-center justify-between gap-4 mt-2'>
+            <div className='flex flex-wrap items-center justify-between gap-4 mb-2'>
               {/* 分类 */}
               {post.category && (
                 <Link
@@ -91,7 +92,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                   {post.category}
                 </Link>
               )}
-              
+
               {/* 日期 */}
               {post.date?.start_date && (
                  <Link
@@ -102,7 +103,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                 </Link>
               )}
             </div>
-          </div>
+
           {/* 文章标签 */}
           <div className='flex flex-wrap gap-2 mt-2'>
             {post.tagItems?.map(tag => <TagItemMini key={tag.name} tag={tag} />)}
